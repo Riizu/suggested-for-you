@@ -9,4 +9,13 @@ class SuggestedForYouTest < Minitest::Test
 
     assert tree
   end
+
+  def test_insert_first_node
+    tree = BinarySearchTree.new
+
+    tree.insert(61, "Bill & Ted's Excellent Adventure")
+
+    assert_equal 61, tree.head.score
+    assert_equal "Bill & Ted's Excellent Adventure", tree.head.name
+  end
 end
