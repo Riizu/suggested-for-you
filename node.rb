@@ -8,4 +8,11 @@ class Node
     @right = right
   end
 
+#  def <=>(otherNode)
+#    @score <=> otherNode.score
+#  end
+
+  def to_s
+    "[score: #{@score} name: #{@name} left=> #{@left} right=> #{@right}]"
+  end
 end
