@@ -15,8 +15,16 @@ class BinarySearchTree
     end
   end
 
-  def insert(score, name)
-
+  def insert(score, name, tnode=@head)
+    if @head.nil?
+      @head = Node.new(score, name)
+    elsif tnode.nil?
+      tnode = Node.new(score, name)
+    elsif score < tnode.score
+      tnode.left = insert(score, name, tnode.left)
+    elsif score > tnode.score
+      tnode.right = insert(score, name, tnode.right)
+    end
   end
 
 end
