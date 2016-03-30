@@ -1,10 +1,11 @@
 class Node
-  attr_accessor :score, :name, :next_node
+  attr_accessor :score, :name, :left, :right
 
-  def initialize(score, name)
+  def initialize(score = nil, name = nil, left_next = nil, right_next = nil)
     @score = score
     @name = name
-    @next_node = nil
+    @left = left
+    @right = right
   end
 
 end

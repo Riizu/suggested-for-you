@@ -1,22 +1,24 @@
 require_relative 'node'
-
+require 'pry'
 class BinarySearchTree
   attr_accessor :head, :left_node, :right_node
-  
-  def initialize
-    @head = nil
-    @left_node = nil
-    @right_node = nil
+
+  def initialize(head = nil)
+    @head = head
   end
 
-  def insert(score, name)
-    if @head == nil
-      @head = Node.new(score, name)
-    elsif @left_node == nil
-      @left_node = Node.new(score, name)
-    elsif @right_node == nil
-      @right_node = Node.new(score, name)
+  def search(score, tnode=@head)
+    if score == tnode.score
+      tnode
+    elsif score < tnode.score
+      search(score,tnode.left)
+    elsif score > tnode.score
+      search(score,tnode.right)
     end
+  end
+
+  def insert(score,name)
+
   end
 
 end
