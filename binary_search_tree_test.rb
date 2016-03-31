@@ -87,4 +87,17 @@ class SuggestedForYouTest < Minitest::Test
     assert_equal 92, max
   end
 
+  def test_min
+    tree = BinarySearchTree.new
+
+    tree.insert(61, "Bill & Ted's Excellent Adventure")
+    tree.insert(16, "Johnny English")
+    tree.insert(92, "Sharknado 3")
+    tree.insert(50, "Hannibal Buress: Animal Furnace")
+
+    min = tree.min.score
+    assert_equal 16, min
+
+  end
+
 end

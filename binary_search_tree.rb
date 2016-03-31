@@ -44,8 +44,12 @@ class BinarySearchTree
     end
   end
 
-  def min
-
+  def min(current = @root)
+    if current.left == nil
+      return current
+    else
+      min(current.left)
+    end
   end
 
   def max(current = @root)
