@@ -125,4 +125,25 @@ class SuggestedForYouTest < Minitest::Test
     assert tree.include?(69)
     assert tree.include?(39)
   end
+
+  def test_health
+    tree = BinarySearchTree.new
+
+    tree.insert(98, "Animals United")
+    tree.insert(58, "Armageddon")
+    tree.insert(36, "Bill & Ted's Bogus Journey")
+    tree.insert(93, "Bill & Ted's Excellent Adventure")
+    tree.insert(86, "Charlie's Angels")
+    tree.insert(38, "Charlie's Country")
+    tree.insert(69, "Collateral Damage")
+    binding.pry
+
+    health0 = tree.health(0)
+    health1 = tree.health(1)
+    health2 = tree.health(2)
+
+    assert_equal health0, [[98, 7, 100]]
+    assert_equal health1, [[58, 6, 85]]
+    assert_equal health2, [[36, 2, 28], [93, 3, 42]]
+  end
 end

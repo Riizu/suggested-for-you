@@ -69,11 +69,52 @@ class BinarySearchTree
     if current.nil?
       return nil
     else
+      #using in order traversal
       sort(current.left,hash)
       hash[current.name] = current.score
       sort(current.right,hash)
     end
     hash
+  end
+
+  def height(current = @root)
+    if current.nil?
+      return 0
+    else
+      lheight = height(current.left)
+      rheight = height(current.right)
+
+      if lheight > rheight
+        return lheight + 1
+      else
+        return rheight + 1
+      end
+    end
+  end
+
+  def get_given_depth(depth, current = @root,array=[])
+    return nil if current.nil?
+    if depth == 0
+      node_data = {current.score => current.name}
+      array.push(node_data)
+    elsif depth > 0
+      get_given_depth(depth-1,current.left,array)
+      get_given_depth(depth-1,current.right,array)
+    end
+    array
+  end
+
+  def health(depth, current = @root)
+    height = height(current)
+    puts height
+    requested_nodes = []
+    while depth <= height do
+      requested_nodes << get_given_depth(depth)
+      depth+=1
+    end
+    requested_nodes.uniq!
+    health = [requested_nodes[0].score]
+    puts health
   end
 end
 
