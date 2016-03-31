@@ -28,6 +28,6 @@ class Node
   end
 
   def to_s
-    "[score: #{@score} name: #{@name} left=> #{@left} right=> #{@right}]"
+    "[score: #{@score} name: #{@name} depth: #{@depth}]"
   end
 end

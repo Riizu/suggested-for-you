@@ -115,5 +115,14 @@ class SuggestedForYouTest < Minitest::Test
     assert_equal sort, tree.sort
   end
 
+  def test_load
+    tree = BinarySearchTree.new
 
+    tree.load("movies.txt")
+    sort = tree.sort
+
+    assert tree.include?(71)
+    assert tree.include?(69)
+    assert tree.include?(39)
+  end
 end

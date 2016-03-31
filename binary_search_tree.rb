@@ -4,15 +4,15 @@ require 'pry'
 class BinarySearchTree
   attr_accessor :root
 
-  def include?(score, tnode=@root)
-    if tnode.nil?
+  def include?(score, current=@root)
+    if current.nil?
       return false
-    elsif score == tnode.score
+    elsif score == current.score
       return true
-    elsif score < tnode.score
-      include?(score,tnode.left)
-    else score > tnode.score
-      include?(score,tnode.right)
+    elsif score < current.score
+      include?(score,current.left)
+    else score > current.score
+      include?(score,current.right)
     end
   end
 
@@ -25,15 +25,15 @@ class BinarySearchTree
     end
   end
 
-  def depth_of(score, tnode=@root, depth=0)
-    if tnode.nil?
+  def depth_of(score, current=@root, depth=0)
+    if current.nil?
       puts "No such node exists"
-    elsif score == tnode.score
+    elsif score == current.score
       return depth
-    elsif score < tnode.score
-      depth_of(score,tnode.left,depth+1)
-    else score > tnode.score
-      depth_of(score,tnode.right,depth+1)
+    elsif score < current.score
+      depth_of(score,current.left,depth+1)
+    else score > current.score
+      depth_of(score,current.right,depth+1)
     end
   end
 
@@ -52,6 +52,16 @@ class BinarySearchTree
       hash
     else
       return max(current.right)
+    end
+  end
+
+  def load(file)
+    file = File.open(file)
+    while !file.eof?
+      line = file.readline.split(",", 2)
+      score = line[0].to_i
+      name = line[1]
+      insert(score, name)
     end
   end
 
