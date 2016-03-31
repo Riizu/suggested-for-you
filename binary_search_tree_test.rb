@@ -83,8 +83,9 @@ class SuggestedForYouTest < Minitest::Test
     tree.insert(92, "Sharknado 3")
     tree.insert(50, "Hannibal Buress: Animal Furnace")
 
-    max = tree.max.score
-    assert_equal 92, max
+    max = tree.max
+    expected_max = {"Sharknado 3" => 92}
+    assert_equal expected_max, max
   end
 
   def test_min
@@ -95,8 +96,9 @@ class SuggestedForYouTest < Minitest::Test
     tree.insert(92, "Sharknado 3")
     tree.insert(50, "Hannibal Buress: Animal Furnace")
 
-    min = tree.min.score
-    assert_equal 16, min
+    min = tree.min
+    expected_min = {"Johnny English" => 16}
+    assert_equal expected_min, min
   end
 
   def test_sort

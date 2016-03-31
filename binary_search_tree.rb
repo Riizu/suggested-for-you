@@ -37,17 +37,19 @@ class BinarySearchTree
     end
   end
 
-  def min(current = @root)
+  def min(current = @root, hash = {})
     if current.left == nil
-      return current
+      hash[current.name] = current.score
+      hash
     else
       min(current.left)
     end
   end
 
-  def max(current = @root)
+  def max(current = @root, hash = {})
     if current.right == nil
-      return current
+      hash[current.name] = current.score
+      hash
     else
       return max(current.right)
     end
