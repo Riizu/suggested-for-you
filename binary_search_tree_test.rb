@@ -97,7 +97,21 @@ class SuggestedForYouTest < Minitest::Test
 
     min = tree.min.score
     assert_equal 16, min
-
   end
+
+  def test_sort
+    tree = BinarySearchTree.new
+
+    tree.insert(61, "Bill & Ted's Excellent Adventure")
+    tree.insert(16, "Johnny English")
+    tree.insert(92, "Sharknado 3")
+    tree.insert(50, "Hannibal Buress: Animal Furnace")
+
+    sort = {"Johnny English" => 16, "Hannibal Buress: Animal Furnace" => 50,
+            "Bill & Ted's Excellent Adventure" => 61, "Sharknado 3" => 92}
+
+    assert_equal sort, tree.sort
+  end
+
 
 end

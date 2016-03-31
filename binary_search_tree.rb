@@ -4,13 +4,6 @@ require 'pry'
 class BinarySearchTree
   attr_accessor :root
 
-  def in_order(node=@root)
-    return nil if node.nil?
-    in_order(node.left)
-    node
-    in_order(node.right)
-  end
-
   def include?(score, tnode=@root)
     if tnode.nil?
       return false
@@ -58,6 +51,17 @@ class BinarySearchTree
     else
       return max(current.right)
     end
+  end
+
+  def sort(current = @root, hash = {})
+    if current.nil?
+      return nil
+    else
+      sort(current.left,hash)
+      hash[current.name] = current.score
+      sort(current.right,hash)
+    end
+    hash
   end
 end
 
