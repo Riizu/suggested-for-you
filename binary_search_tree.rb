@@ -2,9 +2,16 @@ require_relative 'node'
 require 'pry'
 
 class BinarySearchTree
-  attr_accessor :head
+  attr_accessor :root
 
-  def include?(score, tnode=@head)
+  def in_order(node=@root, &block)
+    return if node.nil?
+    in_order(node.left, &block)
+    yield node
+    in_order(node.right, &block)
+  end
+
+  def include?(score, tnode=@root)
     if tnode.nil?
       return false
     elsif score == tnode.score
@@ -17,17 +24,17 @@ class BinarySearchTree
   end
 
   def insert(score, name)
-    if @head.nil?
-      @head = Node.new(score,name)
-      return @head.depth
+    if @root.nil?
+      @root = Node.new(score,name)
+      return @root.depth
     else
-      @head.insert(score,name)
+      @root.insert(score,name)
     end
   end
 
-  def depth_of(score, tnode=@head, depth=0)
+  def depth_of(score, tnode=@root, depth=0)
     if tnode.nil?
-      return false
+      puts "No such node exists"
     elsif score == tnode.score
       return depth
     elsif score < tnode.score
@@ -36,8 +43,6 @@ class BinarySearchTree
       depth_of(score,tnode.right,depth+1)
     end
   end
-
-  
 end
 
 tree = BinarySearchTree.new

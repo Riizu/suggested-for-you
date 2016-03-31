@@ -17,8 +17,8 @@ class SuggestedForYouTest < Minitest::Test
 
     node0 = tree.insert(61, "Bill & Ted's Excellent Adventure")
 
-    assert_equal 61, tree.head.score
-    assert_equal "Bill & Ted's Excellent Adventure", tree.head.name
+    assert_equal 61, tree.root.score
+    assert_equal "Bill & Ted's Excellent Adventure", tree.root.name
   end
 
   def test_multiple_node_depth
@@ -45,9 +45,10 @@ class SuggestedForYouTest < Minitest::Test
     node2 = tree.insert(92, "Sharknado 3")
     node3 = tree.insert(50, "Hannibal Buress: Animal Furnace")
 
-    assert_equal 16, tree.head.left.score
-    assert_equal 92, tree.head.right.score
-    assert_equal 50, tree.head.left.right.score
+    assert_equal 16, tree.root.left.score
+    assert_equal 92, tree.root.right.score
+    assert_equal 50, tree.root.left.right.score
+    binding.pry
   end
 
   def test_include?
@@ -73,4 +74,17 @@ class SuggestedForYouTest < Minitest::Test
     assert_equal 1, depth1
     assert_equal 2, depth2
   end
+
+  def test_max
+    tree = BinarySearchTree.new
+
+    tree.insert(61, "Bill & Ted's Excellent Adventure")
+    tree.insert(16, "Johnny English")
+    tree.insert(92, "Sharknado 3")
+    tree.insert(50, "Hannibal Buress: Animal Furnace")
+
+    max = tree.max
+    assert_equal 92, max
+  end
+
 end
