@@ -48,7 +48,7 @@ class SuggestedForYouTest < Minitest::Test
     assert_equal 16, tree.root.left.score
     assert_equal 92, tree.root.right.score
     assert_equal 50, tree.root.left.right.score
-    binding.pry
+
   end
 
   def test_include?
@@ -83,7 +83,7 @@ class SuggestedForYouTest < Minitest::Test
     tree.insert(92, "Sharknado 3")
     tree.insert(50, "Hannibal Buress: Animal Furnace")
 
-    max = tree.max
+    max = tree.max.score
     assert_equal 92, max
   end
 

@@ -4,11 +4,11 @@ require 'pry'
 class BinarySearchTree
   attr_accessor :root
 
-  def in_order(node=@root, &block)
-    return if node.nil?
-    in_order(node.left, &block)
-    yield node
-    in_order(node.right, &block)
+  def in_order(node=@root)
+    return nil if node.nil?
+    in_order(node.left)
+    node
+    in_order(node.right)
   end
 
   def include?(score, tnode=@root)
@@ -41,6 +41,18 @@ class BinarySearchTree
       depth_of(score,tnode.left,depth+1)
     else score > tnode.score
       depth_of(score,tnode.right,depth+1)
+    end
+  end
+
+  def min
+
+  end
+
+  def max(current = @root)
+    if current.right == nil
+      return current
+    else
+      return max(current.right)
     end
   end
 end
